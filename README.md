@@ -75,8 +75,8 @@ If the control input changes to AB = 10, then all the gates are restricted excep
 
 /*
 Program for 4X1 Multiplexer and 1X4 Demultiplexer and verify its truth table in quartus using Verilog programming.
-Developed by: Varsha Ajith
-RegisterNumber: 212221230118
+Developed by: Suwetha M
+RegisterNumber: 212221230112
 */
 
 ## 4X1 MULTIPLEXER:
