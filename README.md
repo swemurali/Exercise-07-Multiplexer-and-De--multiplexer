@@ -1,13 +1,25 @@
-# Exercise-07-Multiplexer-and-De-multiplexer
-### AIM: To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs
-### HARDWARE REQUIRED:  – PC, Cyclone II , USB flasher
-### SOFTWARE REQUIRED:   Quartus prime
-### THEORY 
+# Exercise 07 Multiplexer and Demultiplexer
 
-## What are Multiplexer and Demultiplexer?
+## AIM: 
+
+To implement 4 X1 multiplexer and 1X4 de multiplexer using verilog and validate its outputs.
+
+## HARDWARE REQUIRED:
+
+PC, Cyclone II , USB flasher
+
+## SOFTWARE REQUIRED: 
+
+Quartus prime
+
+## THEORY:
+
+### What are Multiplexer and Demultiplexer?
+
 In-network transmission, both the multiplexer and demultiplexer are combinational circuits. A multiplexer selects an input from several inputs then it is transmitted in the form of a single line. An alternative name of the multiplexer is MUX or data selector. A demultiplexer uses one input signal and generates many. So it is known as Demux or data distributor.
 
-## What is a Multiplexer?
+### What is a Multiplexer?
+
 The multiplexer is a device that has multiple inputs and single line output. The select lines determine which input is connected to the output, and also increase the amount of data that can be sent over a network within a certain time. It is also called a data selector.
 
 The single-pole multi-position switch is a simple example of a non-electronic circuit of the multiplexer, and it is widely used in many electronic circuits. The multiplexer is used to perform high-speed switching and is constructed by electronic components.
@@ -21,12 +33,11 @@ Multiplexers are capable of handling both analog and digital applications. In an
 The 4X1 multiplexer comprises 4-input bits, 1- output bit, and 2- control bits. The four input bits are namely 0, D1, D2, and D3, respectively; only one of the input bits is transmitted to the output. The o/p ‘q’ depends on the value of control input AB. The control bit AB decides which of the i/p data bit should transmit the output. The following figure shows the 4X1 multiplexer circuit diagram using AND gates. For example, when the control bits AB =00, then the higher AND gates are allowed while remaining AND gates are restricted. Thus, data input D0 is transmitted to the output ‘q”
 ![image](https://user-images.githubusercontent.com/36288975/170912568-3598c60a-5035-41f3-b0c4-ccedba13aca5.png)
 
-
 Figure2 4X1 multiplexer 
 If the control input is changed to 11, then all gates are restricted except the bottom AND gate. In this case, D3 is transmitted to the output, and q=D0. If the control input is changed to AB =11, all gates are disabled except the bottom AND gate. In this case, D3 is transmitted to the output, and q = D3. The best example of a 4X1 multiplexer is IC 74153. In this IC, the o/p is the same as the i/p. Another example of a 4X1 multiplexer is IC 45352. In this IC, the o/p is the compliment of the i/p
 
+### What is Demultiplexer?
 
-## What is Demultiplexer?
 De-multiplexer is also a device with one input and multiple output lines. It is used to send a signal to one of the many devices. The main difference between a multiplexer and a de-multiplexer is that a multiplexer takes two or more signals and encodes them on a wire, whereas a de-multiplexer does reverse to what the multiplexer does.
 ![image](https://user-images.githubusercontent.com/36288975/170912606-a30e4b74-1726-4430-b245-2c3c3d9c232d.png)
 Figure 3 De-multiplexer 
@@ -43,46 +54,92 @@ When the control i/p AB = 01, the upper second AND gate is permitted while the r
 If the data bit D is low, the output Y1 is low. IF data bit D is high, the output Y1 is high. The value of the output Y1 depends upon the value of data bit D, the remaining outputs are in a low state.
 
 If the control input changes to AB = 10, then all the gates are restricted except the third AND gate from the top. Then, data bit D is transmitted only to the output Y2; and, Y2 = Data. . The best example of 1X4 demultiplexer is IC 74155.
-
  
- 
-### Procedure
-/* write all the steps invloved */
+## PROCEDURE:
 
 
+1.Start the module using module projname().
 
-### PROGRAM 
+2.Declare the inputs and outputs along with the select lines according to the multiplexer and demultiplexer.
+
+3.Use wire to assign intermediate outputs.
+
+4.Use and,or and not gates to get the desired output.
+
+5.End the module.
+
+6.Generate RTL realization and timing diagrams.
+
+
+## PROGRAM:
+
 /*
-Program for flipflops  and verify its truth table in quartus using Verilog programming.
-Developed by: 
-RegisterNumber:  
+Program for 4X1 Multiplexer and 1X4 Demultiplexer and verify its truth table in quartus using Verilog programming.
+Developed by: Varsha Ajith
+RegisterNumber: 212221230118
 */
 
+## 4X1 MULTIPLEXER:
 
+```
+module mux(I0,I1,I2,I3,S0,S1,Y);
+input I0,I1,I2,I3,S0,S1;
+output Y;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+wire P,Q,R,S;
+and(P,S0C,S1C,I0);
+and(Q,S0C,S1,I1);
+and(R,S0,S1C,I2);
+and(S,S0,S1,I3);
+or(Y,P,Q,R,S);
+endmodule
+```
 
+## RTL LOGIC:
 
+![output](muxrtl.png)
 
+## TIMING DIAGRAM:
 
-### RTL LOGIC  
+![output](0.png)
+![output](1.png)
+![output](2.png)
+![output](3.png)
 
+## TRUTH TABLE:
 
+![output](muxtruth.png)
 
+## 1X4 DEMULTIPLEXER:
 
+```
+module demux(I,S0,S1,Y0,Y1,Y2,Y3);
+input I,S0,S1;
+output Y0,Y1,Y2,Y3;
+wire S0C,S1C;
+not(S0C,S0);
+not(S1C,S1);
+and(Y0,I,S0C,S1C);
+and(Y1,I,S0C,S1);
+and(Y2,I,S0,S1C);
+and(Y3,I,S0,S1);
+endmodule
+```
 
+## RTL LOGIC:
 
+![output](demuxrtl.png)
 
+## TIMING DIAGRAM:
 
-### TIMING DIGRAMS  
+![output](op0.png)
 
+## TRUTH TABLE:
 
+![output](demuxtruth.png)
 
+## RESULT:
 
-
-### TRUTH TABLE 
-
-
-
-
-
-
-### RESULTS 
+Hence 4x1 Multiplexer and 1x4 Demultiplexer is been implemented and verified using verilog programming and its output are validated.
